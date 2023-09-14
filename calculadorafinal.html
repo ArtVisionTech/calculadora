@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>calculadora financeira</title>
+</head>
+
+<body>
+    <h1>Simulador financeiro</h1>
+    <h2>tenha uma visão ampla do nosso negócio </h2>
+    <h3>Com a Art Vision Tech, oferecemos a melhor relação custo-benefício do mercado, garantindo que seus
+        sensores atendam plenamente às necessidades de conservação do museu.</h3>
+
+    Diga a nós o seu nome:
+    <br><input type="text" id="ipt_nome" ><br><br>
+
+    Diga a nós que instituto de arte você representa:<br>
+    <input type="text" id="instituto" > <br> <br>
+
+    Quantas obras estão expostas e demandam o controle dos nossos sensores:<br> 
+    <input type="text" id="qtdsensor" > <br> <br>
+
+    Gasto médio com manutenção anual das obras:<br>
+    <input type="text" id="gastoAnual" > <br> <br>
+
+    <button onclick="calcular()">Simulador financeiro</button> <br> <br>
+    
+<div id="mensagem"></div>
+    
+
+</body>
+
+</html>
+
+<script>
+    function calcular() { 
+
+        var cliente = ipt_nome.value; // nome do cliente 
+        var instituto_ = instituto.value; // nome do instituto representado
+        var demandaSensores = Number (qtdsensor.value); // quantidade de sensor que o cliente necessita   
+        var gastoAnual_cliente = Number (gastoAnual.value); // gasto anual do cliente sem os nossos 
+        var precoSensor = 150; // preço unitario do sensor
+        var totalSensor = demandaSensores * precoSensor; // preço dos sensores que o cliente necessitara 
+        var totalProjeto = totalSensor + 20000; // preço ao final do projeto total
+        var diferencaManutencao =  gastoAnual_cliente - 20000; // valor de diferença entre o gasto anual do cliente e e dos nossos serviços 
+        var manutencaodesconto = 20000 - gastoAnual_cliente; // desconto caso o gasto anual do cliente seja menor do que com os nossos serviços
+        var porcentagemReducao = (totalProjeto / gastoAnual_cliente) * 100; // calculo para fazer a porcentagem da redução anual com o nosso projeto
+        var totalporc = 100 - porcentagemReducao; // total da porcetagem da reduçao do gasto anual com o nosso projeto
+        
+
+       if(gastoAnual_cliente < 20000) {
+         mensagem.innerHTML = `Olá ${cliente} soube que você representa o instituto ${instituto_} 
+         e pelo o que nos informou seu gasto anual de manutenção é de R$${gastoAnual_cliente}. você pretende solicitar 
+         ${demandaSensores} sensores para sua instituição, essa quantidade custará R$${totalSensor}
+         contratando nosso serviços você recebera um desconto em manuteção R$${manutencaodesconto},
+         ou seja  tendo o custo total do projeto de R$${totalProjeto}.`
+        
+            } else {
+                mensagem.innerHTML = `Olá ${cliente} soube que você representa o instituto ${instituto_} 
+         e pelo o que nos informou seu gasto anual com manutenção é de R$${gastoAnual_cliente}. você pretende solicitar 
+         ${demandaSensores} sensores para sua instituição, essa quantidade custará R$${totalSensor} no total dos sensores,
+         com nossos serviços você poupará R$${diferencaManutencao}, ou seja você reduiziu o seu gasto anual com manutenção em ${totalporc}% , 
+         tendo o custo final do projeto de R$${totalProjeto}, nos tornando a opção com maior custo beneficio 
+         para o instituto ${instituto_}.`
+}}
+</script>
